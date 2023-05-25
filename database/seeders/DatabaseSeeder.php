@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(50)->create();
-        Tweet::factory(200)->create();
+        User::factory()->count(60)->has(Tweet::factory()->count(50))->create();
     }
 }
