@@ -22,7 +22,8 @@ class TweetFactory extends Factory
         return [
             'text' => $this->faker->text(random_int(5, 160)),
             'likes' => $this->faker->numberBetween(0, 20000),
-            'created_at' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d H:i:s')
+            'created_at' => $this->faker->dateTimeBetween('-1 month', 'now')->format('Y-m-d H:i:s'),
+            'user_id' => $this->faker->numberBetween(1, 50)
         ];
     }
 }
