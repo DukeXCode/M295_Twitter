@@ -20,4 +20,13 @@ class LoginController extends Controller
     {
         return UserResource::make($request->user());
     }
+
+    public function logout(Request $request)
+    {
+        if ($request->user() == null) {
+            return response()->json(['errors' => 'not logged in'], 401);
+        }
+        $request->user()->tokens()->delete();
+        return ['message' => 'Logged out'];
+    }
 }
