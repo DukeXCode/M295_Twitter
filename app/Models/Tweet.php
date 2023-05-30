@@ -10,6 +10,8 @@ class Tweet extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['likes'];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

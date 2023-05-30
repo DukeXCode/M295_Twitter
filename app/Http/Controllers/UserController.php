@@ -4,19 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\TweetResource;
 use App\Http\Resources\UserResource;
+use App\Models\Tweet;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function show(int $id)
+    public function show(User $user)
     {
-        return UserResource::make(User::find($id));
+        return UserResource::make($user);
     }
 
-    public function tweets(int $id)
+    public function tweets(User $user)
     {
-        $tweets = User::find($id)->tweets()->latest()->take(10)->get();
+        $tweets = $user->tweets()->latest()->take(10)->get();
         return ['data' => TweetResource::collection($tweets)];
     }
 }

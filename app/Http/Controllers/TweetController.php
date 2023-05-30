@@ -11,4 +11,10 @@ class TweetController extends Controller
         $tweets = Tweet::with('user')->latest()->take(100)->get();
         return TweetResource::collection($tweets);
     }
+
+    public function like(Tweet $tweet)
+    {
+        $tweet->update(['likes' => $tweet->likes + 1]);
+        return TweetResource::make($tweet);
+    }
 }

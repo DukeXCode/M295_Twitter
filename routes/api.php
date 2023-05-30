@@ -22,8 +22,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/tweets', [TweetController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::get('/users/{id}/tweets', [UserController::class, 'tweets']);
+Route::post('/tweets/{tweet}/like', [TweetController::class, 'like'])->middleware('auth:sanctum');
+Route::get('/users/{user}', [UserController::class, 'show']);
+Route::get('/users/{user}/tweets', [UserController::class, 'tweets']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/auth', [LoginController::class, 'checkAuth'])->middleware('auth:sanctum');
 Route::get('/logout', [LoginController::class, 'logout']);
